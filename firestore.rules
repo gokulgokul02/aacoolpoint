@@ -1,0 +1,12 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ─── TEMPORARY OPEN RULES (tighten after seeding) ─────────────────────
+    // All collections: public read + public write (for initial data seeding)
+    // After seeding, re-deploy stricter rules.
+    match /{document=**} {
+      allow read: if true;
+      allow write: if true;
+    }
+  }
+}
